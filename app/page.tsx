@@ -26,7 +26,7 @@ export default function Home() {
 
       <section className="h-20">
         <footer className="p-10 flex justify-center">
-          Footer's content appear here
+          Footer content appear here
         </footer>
       </section>
     </div>
