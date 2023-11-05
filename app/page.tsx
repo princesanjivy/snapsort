@@ -1,3 +1,6 @@
+import GetDetails from "@/components/details";
+import UploadButton from "@/components/upload";
+
 const HeadingText = () => {
   return (
     <div className="text-6xl">
@@ -16,11 +19,12 @@ export default function Home() {
       </section>
       <section className="min-h-screen p-10 bg-slate-50">
         Section 2 - This is where the file upload UI comes in
+        <GetDetails />
         <div className="m-10 flex flex-col items-center">
           <div className="custom-box border-dashed border-2 border-gray-500 flex justify-center items-center">
             <p className="text-lg font-bold">Image to upload</p>
           </div>
-          <button className="btn m-4">Click to take selfie</button>
+          <UploadButton />
         </div>
       </section>
 
