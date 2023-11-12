@@ -1,3 +1,8 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+
 const RowText = () => {
   return (
     <div className="flex flex-col justify-around md:flex-row">
@@ -22,7 +27,46 @@ const RowText = () => {
     </div>
   );
 };
+
+interface OnEventNameChangeProps {
+  onEventNameChange: (newEventName: string | null) => void;
+}
+
+const GetQueryText = (props: OnEventNameChangeProps) => {
+  const searchParams = useSearchParams();
+  const eventName = searchParams.get("event");
+
+  console.log(eventName);
+
+  // props.onEventNameChange(eventName);
+
+  useEffect(() => {
+    // Call the callback function to update the parent component's state
+    props.onEventNameChange(eventName);
+  }, [eventName, props.onEventNameChange]);
+
+
+  return (
+    <div>
+      {eventName && (
+        <h1 className="mx-2 text-xl text-red-500">
+          Event name: {eventName.trim()}
+        </h1>
+      )}
+    </div>
+  );
+};
+
 export default function Test() {
+  // State to hold the eventName value
+  const [eventName, setEventName] = useState<string | null>(null);
+
+  // Callback function to update the eventName state
+  const handleEventNameChange = (newEventName: string | null) => {
+    setEventName(newEventName);
+  };
+
+
   return (
     // <div>
     //   <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -61,6 +105,11 @@ export default function Test() {
     //   </div>
     // </div>
     <>
+      <GetQueryText onEventNameChange={handleEventNameChange} />
+      {/* Use the eventName value in this component */}
+      {eventName && (
+        <h2>Event name from GetQueryText: {eventName}</h2>
+      )}
       <div className="flex justify-center items-center">
         <div className="bg-white p-10 w-max rounded-lg shadow-2xl flex items-center">
           <div className="bg-blue-500 w-10 h-10"></div>
