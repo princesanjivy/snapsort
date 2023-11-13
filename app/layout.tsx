@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
-import Navbar from "@/components/navbar";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const font = Nunito({
+const font = Montserrat({
   subsets: ["latin"],
 });
 
@@ -20,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="corporate">
       <body className={font.className}>
-        <Navbar />
         {children}
       </body>
     </html>
