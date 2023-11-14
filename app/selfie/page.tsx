@@ -3,9 +3,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import AlertPopup from "@/components/AlertPopup";
+import { useData } from "@/components/DataContext";
 
 const Selfie = () => {
   const router = useRouter();
+
+  const { setSharedDataValue } = useData();
 
   const moveNextPage = () => {
     console.log("move next page");
@@ -13,9 +16,10 @@ const Selfie = () => {
   };
 
   const [formValues, setFormValues] = useState({
+    event: "",
     name: "",
     email: "",
-    phone: "",
+    phone: "1234567890",
   });
 
   const [alertData, setAlertData] = useState({
@@ -35,13 +39,15 @@ const Selfie = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(formValues);
     if (formValues.phone.length == 10) {
+      console.log(formValues);
+
+      setSharedDataValue(formValues);
       moveNextPage();
     } else {
       setAlertData({
         isVisible: true,
-        message: "Phone number is invalid!",
+        message: "phone number is invalid!",
         type: "alert-error",
       });
 
@@ -86,6 +92,9 @@ const Selfie = () => {
                 placeholder="marriage"
                 className="input input-bordered w-full max-w-xs rounded-lg capitalize"
                 disabled
+                name="event"
+                value={formValues.event}
+                onChange={handleChange}
               />
             </div>
             <div className="form-control w-full max-w-xs">
