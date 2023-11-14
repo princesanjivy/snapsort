@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { DataProvider } from "@/components/DataContext";
 import "./globals.css";
 
 const font = Montserrat({
@@ -18,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="corporate">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <DataProvider>{children}</DataProvider>
+      </body>
     </html>
   );
 }
