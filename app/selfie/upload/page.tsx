@@ -1,13 +1,52 @@
 "use client";
 
 import { ChangeEvent, useRef, useState } from "react";
+import { useData } from "@/components/DataContext";
+import AlertPopup from "@/components/AlertPopup";
+
+interface UserData {
+  event: string,
+  name: string,
+  email: string,
+  phone: string,
+}
 
 const Upload = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [alertData, setAlertData] = useState({
+    isVisible: false,
+    message: "",
+    type: "alert-info",
+  });
+
   const [canSubmit, setCanSubmit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [pickedImage, setPickedImage] = useState<string | undefined>(undefined);
+
+  const { sharedData } = useData<UserData>();
+
+  if (sharedData != null) {
+    console.log(sharedData.email);
+  } else {
+    return (
+      <>
+        <div className="p-8 bg-emerald-400 w-full h-max">
+          <div className="text-white text-3xl text-center uppercase font-semibold italic">
+            Groom weds Bride
+          </div>
+          <div className="mt-8 text-white text-xl text-center opacity-80 font-medium">
+            Get your event photos
+          </div>
+        </div>
+        <div className="my-20 text-center">
+          Oops something wrong! <br /> Try again by scanning the QR code!
+        </div>
+      </>
+    );
+  }
 
   const handleCameraImg = () => {
     console.log("open camera");
@@ -36,8 +75,88 @@ const Upload = () => {
     }
   };
 
+  const uploadData = async () => {
+    setIsLoading(true);
+
+    const payload = JSON.stringify({
+      folder_name: sharedData.event,
+      user_name: sharedData.name,
+      email: sharedData.email,
+      phone_number: sharedData.phone,
+      image_name: selectedImage?.name,
+      image_data: selectedImage,
+      status: "uploaded"
+    });
+
+    const headersList = {
+      Accept: "*/*",
+      "Content-Type": "image/jpg",
+    };
+
+    const url = "https://rvgh8m72t1.execute-api.ap-south-1.amazonaws.com/v1/selfi-upload";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: headersList,
+      body: payload,
+    });
+
+    if (response.ok && response.status === 200) {
+      console.log(response.body);
+      console.log(response);
+    
+      setAlertData({
+        isVisible: true,
+        message: "uploaded successfully!",
+        type: "alert-info",
+      });
+
+      setTimeout(() => {
+        setAlertData({
+          isVisible: false,
+          message: "",
+          type: "",
+        });
+      }, 3000);
+
+      setIsLoading(false);
+      setCanSubmit(false);
+
+      setAlertData({
+        isVisible: true,
+        message: "you'll recieve a mail shortly!",
+        type: "alert-info",
+      });
+
+      setTimeout(() => {
+        setAlertData({
+          isVisible: false,
+          message: "",
+          type: "",
+        });
+      }, 5000);
+    } else {
+      setAlertData({
+        isVisible: true,
+        message: "internal server error; try again!",
+        type: "alert-error",
+      });
+
+      setTimeout(() => {
+        setAlertData({
+          isVisible: false,
+          message: "",
+          type: "",
+        });
+      }, 3000);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
+      {alertData.isVisible && (
+        <AlertPopup message={alertData.message} type={alertData.type} />
+      )}
       <div className="p-8 bg-emerald-400 w-full h-max">
         <div className="text-white text-3xl text-center uppercase font-semibold italic">
           Groom weds Bride
@@ -86,13 +205,15 @@ const Upload = () => {
         ) : (
           <span>Please take/upload photo</span>
         )}
-        <button
-          type="button"
-          className="mt-4 btn rounded-lg text-white bg-emerald-400"
-          disabled={!canSubmit}
-        >
-          Submit
-        </button>
+        {isLoading ? <span className="loading loading-dots loading-lg"></span> :
+          <button
+            type="button"
+            className="mt-4 btn rounded-lg text-white bg-emerald-400"
+            disabled={!canSubmit}
+            onClick={uploadData}
+          >
+            Submit
+          </button>}
       </div>
       <div className="my-20"></div>
       <div className="absolute bottom-0 p-8 bg-emerald-400 w-full h-max">
