@@ -45,7 +45,6 @@ const GetQueryText = (props: OnEventNameChangeProps) => {
     props.onEventNameChange(eventName);
   }, [eventName, props.onEventNameChange]);
 
-
   return (
     <div>
       {eventName && (
@@ -65,7 +64,6 @@ export default function Test() {
   const handleEventNameChange = (newEventName: string | null) => {
     setEventName(newEventName);
   };
-
 
   return (
     // <div>
@@ -107,9 +105,7 @@ export default function Test() {
     <>
       <GetQueryText onEventNameChange={handleEventNameChange} />
       {/* Use the eventName value in this component */}
-      {eventName && (
-        <h2>Event name from GetQueryText: {eventName}</h2>
-      )}
+      {eventName && <h2>Event name from GetQueryText: {eventName}</h2>}
       <div className="flex justify-center items-center">
         <div className="bg-white p-10 w-max rounded-lg shadow-2xl flex items-center">
           <div className="bg-blue-500 w-10 h-10"></div>

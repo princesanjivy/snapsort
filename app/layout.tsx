@@ -18,9 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="corporate">
-      <body className={font.className}>
-        {children}
-      </body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
