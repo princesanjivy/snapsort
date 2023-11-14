@@ -5,7 +5,7 @@ interface AlertPopupProps {
 
 const AlertPopup = ({ message, type }: AlertPopupProps) => {
   return (
-    <div className="fixed bottom-0 left-0 p-4">
+    <div className="fixed top-0 right-0 p-4">
       <div className={`alert ${type} flex`}>
         {type !== "alert-error" ? (
           <svg
