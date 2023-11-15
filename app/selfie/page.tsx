@@ -11,10 +11,6 @@ const Selfie = () => {
 
   const eventName = searchParams.get("event");
 
-  if (eventName === null || eventName === "") {
-    return <h1>Not Found</h1>;
-  }
-
   const { setSharedDataValue } = useData();
 
   const moveNextPage = () => {
@@ -23,7 +19,7 @@ const Selfie = () => {
   };
 
   const [formValues, setFormValues] = useState({
-    event: eventName,
+    event: eventName!,
     name: "",
     email: "",
     phone: "",
@@ -67,6 +63,15 @@ const Selfie = () => {
       }, 3000);
     }
   };
+
+  if (eventName === null || eventName === "") {
+    return <h1>Not Found</h1>;
+  }
+
+  // setFormValues((prevValues) => ({
+  //   ...prevValues,
+  //   ["event"]: eventName,
+  // }));
 
   return (
     <>

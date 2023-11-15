@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useRef, useState } from "react";
 import { useData } from "@/components/DataContext";
+import { useRouter } from "next/navigation";
 import AlertPopup from "@/components/AlertPopup";
 
 interface UserData {
@@ -12,6 +13,7 @@ interface UserData {
 }
 
 const Upload = () => {
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [alertData, setAlertData] = useState({
@@ -48,6 +50,11 @@ const Upload = () => {
     );
   }
 
+  const moveNextPage = () => {
+    console.log("move next page");
+    router.push("/selfie/success");
+  };
+
   const handleCameraImg = () => {
     console.log("open camera");
   };
@@ -76,15 +83,25 @@ const Upload = () => {
   };
 
   const uploadData = async () => {
+    let imageData;
     setIsLoading(true);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result;
+      console.log(result);
+
+      imageData = result;
+    };
+    reader.readAsDataURL(selectedImage!);
 
     const payload = JSON.stringify({
       folder_name: sharedData.event,
       user_name: sharedData.name,
       email: sharedData.email,
       phone_number: sharedData.phone,
-      image_name: selectedImage?.name,
-      image_data: pickedImage, // image data url
+      image_name: selectedImage!.name,
+      image_data: imageData, // image data url
       status: "uploaded",
     });
 
@@ -117,6 +134,8 @@ const Upload = () => {
           message: "",
           type: "",
         });
+
+        moveNextPage();
       }, 3000);
 
       setIsLoading(false);
