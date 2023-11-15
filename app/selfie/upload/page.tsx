@@ -82,18 +82,26 @@ const Upload = () => {
     }
   };
 
+  const loadImageData = (imgFile: File) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const result = reader.result;
+        console.log(result);
+
+        resolve(result);
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(imgFile!);
+    });
+  };
+
   const uploadData = async () => {
-    let imageData;
     setIsLoading(true);
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = reader.result;
-      console.log(result);
-
-      imageData = result;
-    };
-    reader.readAsDataURL(selectedImage!);
+    const imageData = await loadImageData(selectedImage!);
 
     const payload = JSON.stringify({
       folder_name: sharedData.event,
@@ -101,9 +109,11 @@ const Upload = () => {
       email: sharedData.email,
       phone_number: sharedData.phone,
       image_name: selectedImage!.name,
-      image_data: imageData, // image data url
+      image_data: imageData,
       status: "uploaded",
     });
+
+    console.log(payload);
 
     const headersList = {
       Accept: "*/*",
