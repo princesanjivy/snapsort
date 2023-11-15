@@ -2,8 +2,10 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import AlertPopup from "@/components/AlertPopup";
-import { useData } from "@/components/DataContext";
+import AlertPopup from "@/components/alertPopup";
+import { useData } from "@/context/dataContext";
+import Header from "@/components/header";
+import ErrorInfo from "@/components/errorInfo";
 
 const Selfie = () => {
   const router = useRouter();
@@ -65,7 +67,7 @@ const Selfie = () => {
   };
 
   if (eventName === null || eventName === "") {
-    return <h1>Not Found</h1>;
+    return <ErrorInfo />;
   }
 
   // setFormValues((prevValues) => ({
@@ -78,93 +80,87 @@ const Selfie = () => {
       {alertData.isVisible && (
         <AlertPopup message={alertData.message} type={alertData.type} />
       )}
-      <div className="p-8 bg-emerald-400 w-full h-max">
-        <div className="text-white text-3xl text-center uppercase font-semibold italic">
-          Groom weds Bride
-        </div>
-        <div className="mt-8 text-white text-xl text-center opacity-80 font-medium">
-          Get your event photos
-        </div>
-        <div className="mt-1 text-gray-700 text-lg text-center opacity-30">
-          Register your contact details
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="bg-emerald-50 p-8 m-10 w-full rounded-xl shadow-2xl">
-          <form
-            className="flex flex-col gap-4 justify-center items-center"
-            onSubmit={handleSubmit}
-          >
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Event</span>
-              </label>
-              <input
-                type="text"
-                placeholder="marriage"
-                className="input input-bordered w-full max-w-xs rounded-lg capitalize"
-                disabled
-                name="event"
-                value={formValues.event}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="input input-bordered w-full max-w-xs rounded-lg capitalize"
-                required={true}
-                name="name"
-                value={formValues.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="john@findyou.com"
-                className="input input-bordered w-full max-w-xs rounded-lg lowercase"
-                required={true}
-                name="email"
-                value={formValues.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Phone</span>
-              </label>
-              <input
-                type="number"
-                placeholder="1234567890"
-                className="input input-bordered w-full max-w-xs rounded-lg"
-                required={true}
-                name="phone"
-                value={formValues.phone}
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              type="submit"
-              className="mt-4 btn rounded-lg text-white bg-emerald-400"
+      <div className="flex flex-col">
+        <Header description="Register your contact details" />
+
+        {/* Body area */}
+        <div className="flex flex-grow justify-center">
+          <div className="bg-emerald-50 p-8 m-10 w-full h-min rounded-xl shadow-2xl">
+            <form
+              className="flex flex-col gap-4 justify-center items-center"
+              onSubmit={handleSubmit}
             >
-              Next
-            </button>
-            {/* <Link
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Event</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="marriage"
+                  className="input input-bordered w-full max-w-xs rounded-lg capitalize"
+                  disabled
+                  name="event"
+                  value={formValues.event}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  className="input input-bordered w-full max-w-xs rounded-lg capitalize"
+                  required={true}
+                  name="name"
+                  value={formValues.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="john@findyou.com"
+                  className="input input-bordered w-full max-w-xs rounded-lg lowercase"
+                  required={true}
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Phone</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="1234567890"
+                  className="input input-bordered w-full max-w-xs rounded-lg"
+                  required={true}
+                  name="phone"
+                  value={formValues.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              <button
+                type="submit"
+                className="mt-4 btn rounded-lg text-white bg-emerald-400"
+              >
+                Next
+              </button>
+              {/* <Link
               type="submit"
               className="mt-4 btn rounded-lg text-white bg-emerald-400"
               href="/selfie/upload"
             >
               Next
             </Link> */}
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </>

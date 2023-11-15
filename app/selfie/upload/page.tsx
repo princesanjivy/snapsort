@@ -1,16 +1,12 @@
 "use client";
 
 import { ChangeEvent, useRef, useState } from "react";
-import { useData } from "@/components/DataContext";
+import { useData } from "@/context/dataContext";
 import { useRouter } from "next/navigation";
-import AlertPopup from "@/components/AlertPopup";
-
-interface UserData {
-  event: string;
-  name: string;
-  email: string;
-  phone: string;
-}
+import AlertPopup from "@/components/alertPopup";
+import { UserDetail } from "@/types/interface";
+import Header from "@/components/header";
+import ErrorInfo from "@/components/errorInfo";
 
 const Upload = () => {
   const router = useRouter();
@@ -28,26 +24,12 @@ const Upload = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [pickedImage, setPickedImage] = useState<string | undefined>(undefined);
 
-  const { sharedData } = useData<UserData>();
+  const { sharedData } = useData<UserDetail>();
 
   if (sharedData != null) {
     console.log(sharedData.email);
   } else {
-    return (
-      <>
-        <div className="p-8 bg-emerald-400 w-full h-max">
-          <div className="text-white text-3xl text-center uppercase font-semibold italic">
-            Groom weds Bride
-          </div>
-          <div className="mt-8 text-white text-xl text-center opacity-80 font-medium">
-            Get your event photos
-          </div>
-        </div>
-        <div className="my-20 text-center">
-          Oops something wrong! <br /> Try again by scanning the QR code!
-        </div>
-      </>
-    );
+    return <ErrorInfo />;
   }
 
   const moveNextPage = () => {
@@ -132,24 +114,25 @@ const Upload = () => {
       console.log(response.body);
       console.log(response);
 
-      setAlertData({
-        isVisible: true,
-        message: "uploaded successfully!",
-        type: "alert-info",
-      });
+      // setAlertData({
+      //   isVisible: true,
+      //   message: "uploaded successfully!",
+      //   type: "alert-info",
+      // });
 
-      setTimeout(() => {
-        setAlertData({
-          isVisible: false,
-          message: "",
-          type: "",
-        });
+      // setTimeout(() => {
+      //   setAlertData({
+      //     isVisible: false,
+      //     message: "",
+      //     type: "",
+      //   });
 
-        moveNextPage();
-      }, 3000);
+      //   moveNextPage();
+      // }, 3000);
 
       setIsLoading(false);
       setCanSubmit(false);
+      moveNextPage();
 
       // setAlertData({
       //   isVisible: true,
@@ -187,25 +170,15 @@ const Upload = () => {
       {alertData.isVisible && (
         <AlertPopup message={alertData.message} type={alertData.type} />
       )}
-      <div className="p-8 bg-emerald-400 w-full h-max">
-        <div className="text-white text-3xl text-center uppercase font-semibold italic">
-          Groom weds Bride
-        </div>
-        <div className="mt-8 text-white text-xl text-center opacity-80 font-medium">
-          Get your event photos
-        </div>
-        <div className="mt-1 text-gray-700 text-lg text-center opacity-30">
-          Upload your selfie
+      <Header description="Upload your selfie" />
+      <div className="p-8w-full h-max">
+        <div className="m-2 text-md text-center">
+          Please ensure that your face is directly facing the camera when taking
+          the photo. This will help capture a clear and well-framed image.
         </div>
       </div>
       <div className="my-10"></div>
       <div className="flex flex-col justify-center items-center">
-        {/* <div
-          className="bg-emerald-50 text-slate-500 flex justify-center items-center my-10 w-40 h-40 rounded-xl shadow-2xl"
-          onClick={handleCameraImg}
-        >
-          Camera
-        </div> */}
         {canSubmit ? (
           <img
             src={pickedImage}
@@ -213,22 +186,31 @@ const Upload = () => {
             className="bg-emerald-50 text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
           />
         ) : (
-          <div>
-            <input
-              type="file"
-              accept="image/jpeg"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-
+          <>
             <div
-              className="bg-emerald-50 text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
-              onClick={handleUploadImg}
+              className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
+              onClick={handleCameraImg}
             >
-              Upload
+              Camera
             </div>
-          </div>
+
+            <div>
+              <input
+                type="file"
+                accept="image/jpeg"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+
+              <div
+                className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
+                onClick={handleUploadImg}
+              >
+                Upload
+              </div>
+            </div>
+          </>
         )}
         {canSubmit ? (
           <span>Click on the submit button below</span>
@@ -236,7 +218,7 @@ const Upload = () => {
           <span>Please take/upload photo</span>
         )}
         {isLoading ? (
-          <span className="loading loading-dots loading-lg bg-emerald-400"></span>
+          <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
         ) : (
           <button
             type="button"
@@ -249,12 +231,6 @@ const Upload = () => {
         )}
       </div>
       <div className="my-20"></div>
-      <div className="absolute bottom-0 p-8 bg-emerald-400 w-full h-max">
-        <div className="m-2 text-white text-md text-center opacity-60">
-          Please ensure that your face is directly facing the camera when taking
-          the photo. This will help capture a clear and well-framed image.
-        </div>
-      </div>
     </>
   );
 };

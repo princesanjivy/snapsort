@@ -1,7 +1,4 @@
-interface AlertPopupProps {
-  message: string;
-  type: string;
-}
+import { AlertPopupProps } from "@/types/interface";
 
 const AlertPopup = ({ message, type }: AlertPopupProps) => {
   return (
