@@ -1,12 +1,19 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import AlertPopup from "@/components/AlertPopup";
 import { useData } from "@/components/DataContext";
 
 const Selfie = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const eventName = searchParams.get("event");
+
+  if (eventName === null || eventName === "") {
+    return <h1>Not Found</h1>;
+  }
 
   const { setSharedDataValue } = useData();
 
@@ -16,10 +23,10 @@ const Selfie = () => {
   };
 
   const [formValues, setFormValues] = useState({
-    event: "",
+    event: eventName,
     name: "",
     email: "",
-    phone: "1234567890",
+    phone: "",
   });
 
   const [alertData, setAlertData] = useState({

@@ -5,10 +5,10 @@ import { useData } from "@/components/DataContext";
 import AlertPopup from "@/components/AlertPopup";
 
 interface UserData {
-  event: string,
-  name: string,
-  email: string,
-  phone: string,
+  event: string;
+  name: string;
+  email: string;
+  phone: string;
 }
 
 const Upload = () => {
@@ -84,8 +84,8 @@ const Upload = () => {
       email: sharedData.email,
       phone_number: sharedData.phone,
       image_name: selectedImage?.name,
-      image_data: selectedImage,
-      status: "uploaded"
+      image_data: pickedImage, // image data url
+      status: "uploaded",
     });
 
     const headersList = {
@@ -93,7 +93,8 @@ const Upload = () => {
       "Content-Type": "image/jpg",
     };
 
-    const url = "https://rvgh8m72t1.execute-api.ap-south-1.amazonaws.com/v1/selfi-upload";
+    const url =
+      "https://rvgh8m72t1.execute-api.ap-south-1.amazonaws.com/v1/selfi-upload";
     const response = await fetch(url, {
       method: "POST",
       headers: headersList,
@@ -103,7 +104,7 @@ const Upload = () => {
     if (response.ok && response.status === 200) {
       console.log(response.body);
       console.log(response);
-    
+
       setAlertData({
         isVisible: true,
         message: "uploaded successfully!",
@@ -121,19 +122,19 @@ const Upload = () => {
       setIsLoading(false);
       setCanSubmit(false);
 
-      setAlertData({
-        isVisible: true,
-        message: "you'll recieve a mail shortly!",
-        type: "alert-info",
-      });
+      // setAlertData({
+      //   isVisible: true,
+      //   message: "you'll recieve a mail shortly!",
+      //   type: "alert-info",
+      // });
 
-      setTimeout(() => {
-        setAlertData({
-          isVisible: false,
-          message: "",
-          type: "",
-        });
-      }, 5000);
+      // setTimeout(() => {
+      //   setAlertData({
+      //     isVisible: false,
+      //     message: "",
+      //     type: "",
+      //   });
+      // }, 5000);
     } else {
       setAlertData({
         isVisible: true,
@@ -205,7 +206,9 @@ const Upload = () => {
         ) : (
           <span>Please take/upload photo</span>
         )}
-        {isLoading ? <span className="loading loading-dots loading-lg"></span> :
+        {isLoading ? (
+          <span className="loading loading-dots loading-lg bg-emerald-400"></span>
+        ) : (
           <button
             type="button"
             className="mt-4 btn rounded-lg text-white bg-emerald-400"
@@ -213,7 +216,8 @@ const Upload = () => {
             onClick={uploadData}
           >
             Submit
-          </button>}
+          </button>
+        )}
       </div>
       <div className="my-20"></div>
       <div className="absolute bottom-0 p-8 bg-emerald-400 w-full h-max">
