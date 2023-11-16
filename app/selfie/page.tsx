@@ -8,6 +8,7 @@ import Header from "@/components/header";
 import ErrorInfo from "@/components/errorInfo";
 import { EventBirthday, EventMarriage, UserDetail } from "@/types/interface";
 import { defaultFormValues } from "@/types/default";
+import Link from "next/link";
 
 const Selfie = () => {
   const router = useRouter();
@@ -53,7 +54,7 @@ const Selfie = () => {
       if (event == "birthday") {
         let name = eSplit[1];
         title = name + "'s birthday";
-        
+
         setHeaderTitle(title)
         // setEventBirthday({
         //   name: name
@@ -66,7 +67,7 @@ const Selfie = () => {
         title = groom + " weds " + brider;
 
         setHeaderTitle(title)
-        
+
         // setEventMarriage({
         //   brideName: brider,
         //   groomName: groom
@@ -127,7 +128,7 @@ const Selfie = () => {
 
           {/* Body area */}
           <div className="flex flex-grow justify-center">
-            <div className="bg-emerald-50 p-8 m-10 w-full h-min rounded-xl shadow-2xl">
+            <div className="bg-emerald-50 p-8 mx-10 mt-10 w-full h-min rounded-xl shadow-2xl">
               <form
                 className="flex flex-col gap-4 justify-center items-center"
                 onSubmit={handleSubmit}
@@ -202,6 +203,12 @@ const Selfie = () => {
               Next
             </Link> */}
               </form>
+            </div>
+          </div>
+
+          <div className="mb-10 px-8 w-full h-max">
+            <div className="m-2 text-md text-center">
+              <Link href="/selfie/admin" className="label-text-alt link link-hover">Are you the admin?</Link>
             </div>
           </div>
         </div>

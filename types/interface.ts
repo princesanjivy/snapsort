@@ -19,6 +19,12 @@ export interface EventBirthday {
   name: string;
 }
 
+export interface LoginDetail {
+  phone: string;
+  password: string;
+}
+
+
 export interface UserDetail {
   event: string;
   name: string;
