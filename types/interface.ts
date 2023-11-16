@@ -7,6 +7,16 @@ export interface AlertPopupProps {
 
 export interface HeaderProps {
   description: string;
+  title: string;
+}
+
+export interface EventMarriage {
+  brideName: string;
+  groomName: string;
+}
+
+export interface EventBirthday {
+  name: string;
 }
 
 export interface UserDetail {
