@@ -43,7 +43,7 @@ const Selfie = () => {
 
       let eSplit = eventName!.split("_");
 
-      let event = eSplit[0];
+      let event = eSplit.at(-1);
       let title = "";
 
       // setFormValues((prevValues) => ({
@@ -52,21 +52,24 @@ const Selfie = () => {
       // }));
 
       if (event == "birthday") {
-        let name = eSplit[1];
+        let name = eSplit[0];
         title = name + "'s birthday";
 
         setHeaderTitle(title)
+        event = name + " " + event
+
         // setEventBirthday({
         //   name: name
         // });
       }
 
       if (event == "marriage") {
-        let groom = eSplit[1];
-        let brider = eSplit[2];
+        let groom = eSplit[0];
+        let brider = eSplit[1];
         title = groom + " weds " + brider;
 
         setHeaderTitle(title)
+        event = groom + " " + brider + " " + event
 
         // setEventMarriage({
         //   brideName: brider,
@@ -76,7 +79,7 @@ const Selfie = () => {
 
       setFormValues((prevValues) => ({
         ...prevValues,
-        ["event"]: event,
+        ["event"]: event!,
         ["eventHeaderTitle"]: title,
       }));
     }
@@ -208,7 +211,7 @@ const Selfie = () => {
 
           <div className="mb-10 px-8 w-full h-max">
             <div className="m-2 text-md text-center">
-              <Link href="/selfie/admin" className="label-text-alt link link-hover">Are you the admin?</Link>
+              <Link href="/admin" className="label-text-alt link link-hover">Are you the admin?</Link>
             </div>
           </div>
         </div>

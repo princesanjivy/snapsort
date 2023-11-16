@@ -188,12 +188,12 @@ const Upload = () => {
           />
         ) : (
           <>
-            <div
+            {/* <div
               className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
               onClick={handleCameraImg}
             >
               Camera
-            </div>
+            </div> */}
 
             <div>
               <input
