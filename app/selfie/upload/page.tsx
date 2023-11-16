@@ -7,6 +7,7 @@ import AlertPopup from "@/components/alertPopup";
 import { UserDetail } from "@/types/interface";
 import Header from "@/components/header";
 import ErrorInfo from "@/components/errorInfo";
+import Image from "next/image";
 
 const Upload = () => {
   const router = useRouter();
@@ -180,8 +181,8 @@ const Upload = () => {
       <div className="my-10"></div>
       <div className="flex flex-col justify-center items-center">
         {canSubmit ? (
-          <img
-            src={pickedImage}
+          <Image
+            src={pickedImage!}
             alt="Selected Image"
             className="bg-emerald-50 text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
           />

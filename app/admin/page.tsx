@@ -4,7 +4,7 @@ import AlertPopup from "@/components/alertPopup";
 import { defaultLoginFormValues } from "@/types/default";
 import { LoginDetail } from "@/types/interface";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 const Admin = () => {
@@ -16,7 +16,15 @@ const Admin = () => {
         isVisible: false,
         message: "",
         type: "alert-info",
-      });
+    });
+
+    useEffect(() => {
+        const userData = Cookies.get("findyou-user-data");
+
+        if (userData) {
+            router.push("/admin");
+        }
+    }, [router]);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -51,21 +59,21 @@ const Admin = () => {
 
             if (data["statusCode"] == 200) {
                 Cookies.set("findyou-user-data", "findyou" + formValues.phone);
-                router.push("/selfie/admin/uploadv1");
+                router.push("/admin/upload");
             } else {
                 setAlertData({
                     isVisible: true,
                     message: data["body"],
                     type: "alert-error",
-                  });
-            
-                  setTimeout(() => {
+                });
+
+                setTimeout(() => {
                     setAlertData({
-                      isVisible: false,
-                      message: "",
-                      type: "",
+                        isVisible: false,
+                        message: "",
+                        type: "",
                     });
-                  }, 3000);
+                }, 3000);
             }
         }  // TODO: add else part with alerting that password min lenght not satisifed or user not found
     };
