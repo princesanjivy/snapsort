@@ -43,15 +43,18 @@ const Selfie = () => {
       let eSplit = eventName!.split("_");
 
       let event = eSplit[0];
+      let title = "";
 
-      setFormValues((prevValues) => ({
-        ...prevValues,
-        ["event"]: event,
-      }));
+      // setFormValues((prevValues) => ({
+      //   ...prevValues,
+      //   ["event"]: event,
+      // }));
 
       if (event == "birthday") {
         let name = eSplit[1];
-        setHeaderTitle(name + "'s birthday")
+        title = name + "'s birthday";
+        
+        setHeaderTitle(title)
         // setEventBirthday({
         //   name: name
         // });
@@ -60,12 +63,21 @@ const Selfie = () => {
       if (event == "marriage") {
         let groom = eSplit[1];
         let brider = eSplit[2];
-        setHeaderTitle(groom + " weds " + brider)
+        title = groom + " weds " + brider;
+
+        setHeaderTitle(title)
+        
         // setEventMarriage({
         //   brideName: brider,
         //   groomName: groom
         // });
       }
+
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        ["event"]: event,
+        ["eventHeaderTitle"]: title,
+      }));
     }
   }, [eventName, headerTitle]);
 

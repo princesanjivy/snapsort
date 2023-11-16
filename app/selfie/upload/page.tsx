@@ -170,7 +170,7 @@ const Upload = () => {
       {alertData.isVisible && (
         <AlertPopup message={alertData.message} type={alertData.type} />
       )}
-      <Header description="Upload your selfie" />
+      <Header title={sharedData.eventHeaderTitle!} description="Upload your selfie" />
       <div className="p-8w-full h-max">
         <div className="m-2 text-md text-center">
           Please ensure that your face is directly facing the camera when taking

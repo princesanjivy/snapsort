@@ -24,6 +24,7 @@ export interface UserDetail {
   name: string;
   email: string;
   phone: string;
+  eventHeaderTitle?: string;
 }
 
 export interface DataContextProps<T> {
