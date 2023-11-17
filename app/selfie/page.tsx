@@ -15,6 +15,7 @@ const Selfie = () => {
   const searchParams = useSearchParams();
 
   const eventName = searchParams.get("event");
+  const queryParamStr = "?event=" + eventName;
 
   const { setSharedDataValue } = useData();
 
@@ -193,7 +194,7 @@ const Selfie = () => {
             </div>
             <div className="">
               <div className="text-md text-center">
-                <Link href="/admin" className="label-text-alt link link-hover">
+                <Link href={"/admin"+queryParamStr} className="label-text-alt link link-hover">
                   Are you the admin?
                 </Link>
               </div>

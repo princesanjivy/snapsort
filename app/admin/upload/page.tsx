@@ -12,7 +12,9 @@ const Upload = () => {
   const eventName = searchParams.get("event"); // assuming eventName will not be null
 
   const [headerTitle, setHeaderTitle] = useState<string>("");
+  const [event, setEvent] = useState<string>("");
   const [userData, setUserData] = useState<string | null>(null);
+  const [canUpload, setCanUpload] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,6 +29,7 @@ const Upload = () => {
       if (eventName) {
         let eSplit = eventName!.split("_");
         let event = eSplit.at(-1);
+
         let title = "";
 
         if (event == "birthday") {
@@ -43,9 +46,10 @@ const Upload = () => {
         }
 
         setHeaderTitle(title);
+        setEvent(event!);
       }
     }
-  }, [userData, headerTitle]);
+  }, [userData, headerTitle, event]);
 
   const handleUploadClick = () => {
     if (fileInputRef.current) {
@@ -74,7 +78,7 @@ const Upload = () => {
               </label>
               <input
                 type="text"
-                placeholder="Event"
+                placeholder={event}
                 className="input input-bordered w-full max-w-xs rounded-lg capitalize"
                 disabled
               />
@@ -82,19 +86,22 @@ const Upload = () => {
             <div>
               <input
                 type="file"
-                accept="image/jpeg" // change to zip mimetype
+                accept=" application/zip"
                 ref={fileInputRef}
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               />
 
-              <button
-                type="button"
-                className="mt-4 btn rounded-lg text-white bg-emerald-400"
-                onClick={handleUploadClick}
-              >
-                Upload photos zip
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="mt-4 btn rounded-lg text-white bg-emerald-400"
+                  onClick={handleUploadClick}
+                >
+                  Upload photos zip
+                </button>
+                <span className="pl-2 text-xs">photos.zip</span>
+              </div>
             </div>
 
             {/* {isLoading ? (
@@ -104,6 +111,7 @@ const Upload = () => {
             <button
               type="button"
               className="mt-4 btn rounded-lg text-white bg-emerald-400"
+              disabled={!canUpload}
             >
               Save
             </button>
