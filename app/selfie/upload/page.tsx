@@ -7,7 +7,6 @@ import AlertPopup from "@/components/alertPopup";
 import { UserDetail } from "@/types/interface";
 import Header from "@/components/header";
 import ErrorInfo from "@/components/errorInfo";
-import Image from "next/image";
 
 const Upload = () => {
   const router = useRouter();
@@ -112,8 +111,9 @@ const Upload = () => {
     });
 
     if (response.ok && response.status === 200) {
-      console.log(response.body);
-      console.log(response);
+      const data = await response.json();
+
+      console.log(data);
 
       // setAlertData({
       //   isVisible: true,
@@ -171,67 +171,71 @@ const Upload = () => {
       {alertData.isVisible && (
         <AlertPopup message={alertData.message} type={alertData.type} />
       )}
-      <Header title={sharedData.eventHeaderTitle!} description="Upload your selfie" />
-      <div className="p-8 w-full h-max">
+      <Header
+        title={sharedData.eventHeaderTitle!}
+        description="Upload your selfie"
+      />
+
+      {/* Body area starts */}
+      <div className="flex flex-col flex-grow justify-center gap-4">
         <div className="m-2 text-md text-center">
           Please ensure that your face is directly facing the camera when taking
           the photo. This will help capture a clear and well-framed image.
         </div>
-      </div>
-      <div className="my-10"></div>
-      <div className="flex flex-col justify-center items-center">
-        {canSubmit ? (
-          <Image
-            src={pickedImage!}
-            alt="Selected Image"
-            className="bg-emerald-50 text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
-          />
-        ) : (
-          <>
-            {/* <div
+        <div className="flex flex-col justify-center items-center w-full">
+          {canSubmit ? (
+            <img
+              src={pickedImage!}
+              alt="Selected Image"
+              className="bg-emerald-50 text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
+            />
+          ) : (
+            <>
+              {/* <div
               className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
               onClick={handleCameraImg}
             >
               Camera
             </div> */}
 
-            <div>
-              <input
-                type="file"
-                accept="image/jpeg"
-                ref={fileInputRef}
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
+              <div>
+                <input
+                  type="file"
+                  accept="image/jpeg"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
 
-              <div
-                className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
-                onClick={handleUploadImg}
-              >
-                Upload
+                <div
+                  className="bg-emerald-50 font-bold text-slate-500 flex justify-center items-center mb-10 w-40 h-40 rounded-xl shadow-2xl"
+                  onClick={handleUploadImg}
+                >
+                  Upload
+                </div>
               </div>
-            </div>
-          </>
-        )}
-        {canSubmit ? (
-          <span>Click on the submit button below</span>
-        ) : (
-          <span>Please take/upload photo</span>
-        )}
-        {isLoading ? (
-          <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
-        ) : (
-          <button
-            type="button"
-            className="mt-4 btn rounded-lg text-white bg-emerald-400"
-            disabled={!canSubmit}
-            onClick={uploadData}
-          >
-            Submit
-          </button>
-        )}
+            </>
+          )}
+          {canSubmit ? (
+            <span>Click on the submit button below</span>
+          ) : (
+            <span>Please take/upload photo</span>
+          )}
+          {isLoading ? (
+            <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
+          ) : (
+            <button
+              type="button"
+              className="mt-4 btn rounded-lg text-white bg-emerald-400"
+              disabled={!canSubmit}
+              onClick={uploadData}
+            >
+              Submit
+            </button>
+          )}
+        </div>
       </div>
-      <div className="my-20"></div>
+      {/* Body area ends */}
     </>
   );
 };

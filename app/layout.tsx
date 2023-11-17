@@ -21,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="corporate">
       <body className={font.className}>
-        <DataProvider>{children}</DataProvider>
-        {/* TODO: footer need to be properly done  */}
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <DataProvider>{children}</DataProvider>
+          {/* TODO: footer need to be properly done  */}
+          <Footer />
+        </div>
       </body>
     </html>
   );

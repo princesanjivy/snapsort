@@ -37,46 +37,27 @@ const Selfie = () => {
 
   // update the event name from query parm to the form fields
   useEffect(() => {
-    if (eventName !== null || eventName !== "") {
+    if (eventName) {
       console.log(eventName);
 
-
       let eSplit = eventName!.split("_");
-
       let event = eSplit.at(-1);
       let title = "";
-
-      // setFormValues((prevValues) => ({
-      //   ...prevValues,
-      //   ["event"]: event,
-      // }));
 
       if (event == "birthday") {
         let name = eSplit[0];
         title = name + "'s birthday";
-
-        setHeaderTitle(title)
-        event = name + " " + event
-
-        // setEventBirthday({
-        //   name: name
-        // });
+        event = name + " " + event;
       }
 
       if (event == "marriage") {
         let groom = eSplit[0];
         let brider = eSplit[1];
         title = groom + " weds " + brider;
-
-        setHeaderTitle(title)
-        event = groom + " " + brider + " " + event
-
-        // setEventMarriage({
-        //   brideName: brider,
-        //   groomName: groom
-        // });
+        event = groom + " " + brider + " " + event;
       }
 
+      setHeaderTitle(title);
       setFormValues((prevValues) => ({
         ...prevValues,
         ["event"]: event!,
@@ -126,12 +107,15 @@ const Selfie = () => {
       {eventName === null || eventName === "" ? (
         <ErrorInfo />
       ) : (
-        <div className="flex flex-col">
-          <Header title={headerTitle} description="Register your contact details" />
+        <>
+          <Header
+            title={headerTitle}
+            description="Register your contact details"
+          />
 
-          {/* Body area */}
-          <div className="flex flex-grow justify-center">
-            <div className="bg-emerald-50 p-8 mx-10 mt-10 w-full h-min rounded-xl shadow-2xl">
+          {/* Body area starts */}
+          <div className="flex flex-col flex-grow justify-center">
+            <div className="bg-emerald-50 p-8 mx-10 mt-10 h-min rounded-xl shadow-2xl">
               <form
                 className="flex flex-col gap-4 justify-center items-center"
                 onSubmit={handleSubmit}
@@ -207,14 +191,16 @@ const Selfie = () => {
             </Link> */}
               </form>
             </div>
-          </div>
-
-          <div className="mb-10 px-8 w-full h-max">
-            <div className="m-2 text-md text-center">
-              <Link href="/admin" className="label-text-alt link link-hover">Are you the admin?</Link>
+            <div className="">
+              <div className="text-md text-center">
+                <Link href="/admin" className="label-text-alt link link-hover">
+                  Are you the admin?
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+          {/* Body area ends */}
+        </>
       )}
     </>
   );
