@@ -6,6 +6,8 @@ import { LoginDetail } from "@/types/interface";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import ErrorInfo from "@/components/errorInfo";
+import Header from "@/components/header";
 
 const Admin = () => {
   const router = useRouter();
@@ -18,6 +20,8 @@ const Admin = () => {
     defaultLoginFormValues
   );
 
+  const [headerTitle, setHeaderTitle] = useState<string>("");
+
   const [isLoading, setIsLoading] = useState(false);
   const [alertData, setAlertData] = useState({
     isVisible: false,
@@ -28,10 +32,31 @@ const Admin = () => {
   useEffect(() => {
     const userData = Cookies.get("findyou-user-data");
 
-    if (userData) {
-      router.replace("/admin/upload"+queryParamStr);
+    if (eventName) {
+      console.log(eventName);
+
+      let eSplit = eventName!.split("_");
+      let event = eSplit.at(-1);
+      let title = "";
+
+      if (event == "birthday") {
+        let name = eSplit[0];
+        title = name + "'s birthday";
+      }
+
+      if (event == "marriage") {
+        let groom = eSplit[0];
+        let brider = eSplit[1];
+        title = groom + " weds " + brider;
+      }
+
+      setHeaderTitle(title);
     }
-  }, [router]);
+
+    if (userData) {
+      router.replace("/admin/upload" + queryParamStr);
+    }
+  }, [router, headerTitle]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -69,7 +94,7 @@ const Admin = () => {
       if (data["statusCode"] == 200) {
         setIsLoading(false);
         Cookies.set("findyou-user-data", "findyou" + formValues.phone);
-        router.replace("/admin/upload"+queryParamStr);
+        router.replace("/admin/upload" + queryParamStr);
       } else {
         setIsLoading(false);
         setAlertData({
@@ -102,55 +127,66 @@ const Admin = () => {
         <AlertPopup message={alertData.message} type={alertData.type} />
       )}
 
-      {/* Body area starts  */}
-      <div className="flex flex-grow justify-center items-center">
-        <div className="bg-emerald-50 p-8 mx-10 m-10 w-full md:w-5/12 lg:w-4/12 2xl:w-3/12 h-min rounded-xl shadow-2xl">
-          <form
-            className="flex flex-col gap-4 justify-center items-center"
-            onSubmit={handleSubmit}
-          >
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Phone</span>
-              </label>
-              <input
-                type="number"
-                placeholder="1234567890"
-                className="input input-bordered w-full max-w-xs rounded-lg lowercase"
-                required={true}
-                name="phone"
-                value={formValues!.phone}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered w-full max-w-xs rounded-lg"
-                required={true}
-                name="password"
-                value={formValues!.password}
-                onChange={handleChange}
-              />
-            </div>
-            {isLoading ? (
-              <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
-            ) : (
-              <button
-                type="submit"
-                className="mt-4 btn rounded-lg text-white bg-emerald-400"
+      {eventName === null || eventName === "" ? (
+        <ErrorInfo />
+      ) : (
+        <>
+          <Header
+            title={headerTitle}
+            description="Register your contact details"
+          />
+
+          {/* Body area starts  */}
+          <div className="flex flex-grow justify-center items-center">
+            <div className="bg-emerald-50 p-8 mx-10 m-10 w-full md:w-5/12 lg:w-4/12 2xl:w-3/12 h-min rounded-xl shadow-2xl">
+              <form
+                className="flex flex-col gap-4 justify-center items-center"
+                onSubmit={handleSubmit}
               >
-                Login
-              </button>
-            )}
-          </form>
-        </div>
-      </div>
-      {/* Body area ends */}
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Phone</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="1234567890"
+                    className="input input-bordered w-full max-w-xs rounded-lg lowercase"
+                    required={true}
+                    name="phone"
+                    value={formValues!.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    className="input input-bordered w-full max-w-xs rounded-lg"
+                    required={true}
+                    name="password"
+                    value={formValues!.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                {isLoading ? (
+                  <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
+                ) : (
+                  <button
+                    type="submit"
+                    className="mt-4 btn rounded-lg text-white bg-emerald-400"
+                  >
+                    Login
+                  </button>
+                )}
+              </form>
+            </div>
+          </div>
+          {/* Body area ends */}
+        </>
+      )}
     </>
   );
 };

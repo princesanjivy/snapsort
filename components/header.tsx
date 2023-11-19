@@ -7,7 +7,7 @@ const Header = ({ description, title }: HeaderProps) => {
         {title}
       </div>
       <div className="mt-8 text-white text-xl text-center opacity-80 font-medium">
-        Get your event photos
+        Get your event photos effortlessly
       </div>
       {description && (
         <div className="mt-1 text-gray-700 text-lg text-center opacity-30">

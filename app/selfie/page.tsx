@@ -111,7 +111,7 @@ const Selfie = () => {
         <>
           <Header
             title={headerTitle}
-            description="Register your contact details"
+            description="Register your contact details below to receive your event photos"
           />
 
           {/* Body area starts */}

@@ -34,7 +34,7 @@ const Upload = () => {
 
   const moveNextPage = () => {
     console.log("move next page");
-    router.push("/selfie/success");
+    router.replace("/selfie/success");
   };
 
   const handleCameraImg = () => {
@@ -173,14 +173,17 @@ const Upload = () => {
       )}
       <Header
         title={sharedData.eventHeaderTitle!}
-        description="Upload your selfie"
+        description="Register your contact details below to receive your event photos"
       />
 
       {/* Body area starts */}
       <div className="flex flex-col flex-grow justify-center gap-4">
         <div className="m-2 text-md text-center">
-          Please ensure that your face is directly facing the camera when taking
-          the photo. This will help capture a clear and well-framed image.
+          <strong>Note:</strong> Feel free to use the same email multiple times, but kindly note
+          that the phone number should be unique and used only once for filling
+          details. <br /><br />
+          Ensure your face is directly facing the camera in uploaded photo, and
+          make sure there should be only one face in uploaded image
         </div>
         <div className="flex flex-col justify-center items-center w-full">
           {canSubmit ? (

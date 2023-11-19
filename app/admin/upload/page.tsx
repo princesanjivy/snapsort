@@ -14,7 +14,11 @@ const Upload = () => {
   const [headerTitle, setHeaderTitle] = useState<string>("");
   const [event, setEvent] = useState<string>("");
   const [userData, setUserData] = useState<string | null>(null);
+
+  const [selectedZip, setSelectedZip] = useState<File | null>(null);
+  
   const [canUpload, setCanUpload] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -61,11 +65,16 @@ const Upload = () => {
     const file = e.target.files && e.target.files[0];
 
     console.log(file);
+
+    setSelectedZip(file || null);
+    setCanUpload(true);
   };
+
+  const handleUpload = async () => {};
 
   return (
     <>
-      <Header title={headerTitle} description="Upload your selfie" />
+      <Header title={headerTitle} description="" />
 
       {/* Body area starts */}
       <div className="flex flex-grow justify-center items-center">
@@ -100,7 +109,10 @@ const Upload = () => {
                 >
                   Upload photos zip
                 </button>
-                <span className="pl-2 text-xs">photos.zip</span>
+                {selectedZip && (
+                  // <span className="pl-2 text-xs">{eventName + ".zip"}</span>
+                  <span className="pl-2 text-xs">{selectedZip.name}</span>
+                )}
               </div>
             </div>
 
@@ -112,6 +124,7 @@ const Upload = () => {
               type="button"
               className="mt-4 btn rounded-lg text-white bg-emerald-400"
               disabled={!canUpload}
+              onClick={handleUpload}
             >
               Save
             </button>
