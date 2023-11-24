@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Hero = () => {
     return <>
         {/* hero begins */}
@@ -13,17 +15,13 @@ const Hero = () => {
                         An innovative state of the are AI based face finder service
                         exclusively tailored for wedding and Birthday events.
                     </p>
-                    {/* <a href="#_"
-                        className="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0">
-                            Signup
-                        Today!</a> */}
-                    <button
-                        type="button"
+                    <Link
+                        href="https://wa.me/919443376775?text=Hi"
                         className="mt-4 btn rounded-lg text-white bg-emerald-400"
-                        // onClick={handleUpload}
+                        target="_blank"
                     >
                         Contact Us
-                    </button>
+                    </Link>
                 </div>
                 {/* <svg className="absolute left-0 max-w-md mt-24 -ml-64 left-svg" viewBox="0 0 423 423"
                         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

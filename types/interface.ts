@@ -24,6 +24,10 @@ export interface LoginDetail {
   password: string;
 }
 
+export interface RetrieveDetail {
+  phone: string;
+  event: string;
+}
 
 export interface UserDetail {
   event: string;
@@ -40,4 +44,10 @@ export interface DataContextProps<T> {
 export interface DataContextValue<T> {
   sharedData: T | null;
   setSharedDataValue: (value: T) => void;
+}
+
+export interface NameCardProps {
+  name: string;
+  description: string;
+  title: string;
 }

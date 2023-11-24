@@ -10,10 +10,43 @@ const Feature = () => {
                     <h3 className="max-w-3xl px-5 mt-2 text-3xl font-black leading-tight text-center text-emerald-500 sm:mt-0 sm:px-0 sm:text-6xl">
                         Easily find and relive your cherished event photos!
                     </h3>
+
                     <div className="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/guest.jpeg" alt="guest" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Guest Registration</h2>
+                                    <p className="font-medium">guests can conveniently upload their photos by scanning QR code</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/photographer.jpeg" alt="photographer" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Photographer Upload</h2>
+                                    <p className="font-medium">photographer uploads all photos in JPG format into a single zip file</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/access.jpeg" alt="access" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Easy Access</h2>
+                                    <p className="font-medium">guests simply enter their details to retrieve their event photos hassle-free!</p>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* feature one */}
-                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
+                        {/* <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
                             <div className="relative flex flex-col items-center justify-center w-full h-full p-12 mr-5 rounded-lg">
+                                <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" alt="..." className="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
                                 <svg className="absolute w-full h-full text-emerald-50 fill-current" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="232" height="256" viewBox="0 0 232 256" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M124.832 6.44052C152.616 1.54154 185.946 -7.24847 207.267 11.1871C228.683 29.705 219.663 64.2884 224.04 92.223C227.566 114.729 235.022 136.29 230.36 158.589C225.276 182.903 214.983 206.206 196.686 223.048C176.855 241.302 151.683 258.385 124.832 255.725C98.5183 253.119 83.9106 225.452 62.6464 209.771C41.6352 194.277 7.86803 189.667 1.10927 164.487C-5.67947 139.196 20.4573 117.863 31.6153 94.1652C40.9874 74.26 45.1234 52.0401 61.1586 36.9496C78.7158 20.4267 101.064 10.6313 124.832 6.44052Z" fill="#FFFFFF" />
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M124.832 6.44052C152.616 1.54154 185.946 -7.24847 207.267 11.1871C228.683 29.705 219.663 64.2884 224.04 92.223C227.566 114.729 235.022 136.29 230.36 158.589C225.276 182.903 214.983 206.206 196.686 223.048C176.855 241.302 151.683 258.385 124.832 255.725C98.5183 253.119 83.9106 225.452 62.6464 209.771C41.6352 194.277 7.86803 189.667 1.10927 164.487C-5.67947 139.196 20.4573 117.863 31.6153 94.1652C40.9874 74.26 45.1234 52.0401 61.1586 36.9496C78.7158 20.4267 101.064 10.6313 124.832 6.44052Z" fill="url(#pattern0)" />
@@ -31,10 +64,10 @@ const Feature = () => {
                                     scanning QR code
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* feature two */}
-                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
+                        {/* <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
                             <div className="relative flex flex-col items-center justify-center w-full h-full p-12 mr-5 rounded-lg">
                                 <svg className="absolute w-full h-full text-emerald-50 fill-current" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="232" height="256" viewBox="0 0 232 256" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M124.832 6.44052C152.616 1.54154 185.946 -7.24847 207.267 11.1871C228.683 29.705 219.663 64.2884 224.04 92.223C227.566 114.729 235.022 136.29 230.36 158.589C225.276 182.903 214.983 206.206 196.686 223.048C176.855 241.302 151.683 258.385 124.832 255.725C98.5183 253.119 83.9106 225.452 62.6464 209.771C41.6352 194.277 7.86803 189.667 1.10927 164.487C-5.67947 139.196 20.4573 117.863 31.6153 94.1652C40.9874 74.26 45.1234 52.0401 61.1586 36.9496C78.7158 20.4267 101.064 10.6313 124.832 6.44052Z" fill="#FFFFFF" />
@@ -52,13 +85,13 @@ const Feature = () => {
                                     JPG format into a single zip file
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {/* next features */}
                         {/* <div className="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20"> */}
                         {/* feature third */}
-                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
+                        {/* <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
                             <div className="relative flex flex-col items-center justify-center w-full h-full p-12 mr-5 rounded-lg">
                                 <svg className="absolute w-full h-full text-emerald-50 fill-current" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="232" height="256" viewBox="0 0 232 256" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M124.832 6.44052C152.616 1.54154 185.946 -7.24847 207.267 11.1871C228.683 29.705 219.663 64.2884 224.04 92.223C227.566 114.729 235.022 136.29 230.36 158.589C225.276 182.903 214.983 206.206 196.686 223.048C176.855 241.302 151.683 258.385 124.832 255.725C98.5183 253.119 83.9106 225.452 62.6464 209.771C41.6352 194.277 7.86803 189.667 1.10927 164.487C-5.67947 139.196 20.4573 117.863 31.6153 94.1652C40.9874 74.26 45.1234 52.0401 61.1586 36.9496C78.7158 20.4267 101.064 10.6313 124.832 6.44052Z" fill="#FFFFFF" />
@@ -75,10 +108,10 @@ const Feature = () => {
                                     email is sent to all registered guests to access their photos
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* feature four */}
-                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
+                        {/* <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/4">
                             <div className="relative flex flex-col items-center justify-center w-full h-full p-10 mr-5 rounded-lg">
                                 <svg className="absolute w-full h-full text-emerald-50 fill-current" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="232" height="256" viewBox="0 0 232 256" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M124.832 6.44052C152.616 1.54154 185.946 -7.24847 207.267 11.1871C228.683 29.705 219.663 64.2884 224.04 92.223C227.566 114.729 235.022 136.29 230.36 158.589C225.276 182.903 214.983 206.206 196.686 223.048C176.855 241.302 151.683 258.385 124.832 255.725C98.5183 253.119 83.9106 225.452 62.6464 209.771C41.6352 194.277 7.86803 189.667 1.10927 164.487C-5.67947 139.196 20.4573 117.863 31.6153 94.1652C40.9874 74.26 45.1234 52.0401 61.1586 36.9496C78.7158 20.4267 101.064 10.6313 124.832 6.44052Z" fill="#FFFFFF" />
@@ -98,8 +131,40 @@ const Feature = () => {
                                     free
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                         {/* </div> */}
+                    </div>
+
+                    <div className="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/email.jpeg" alt="email" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Email Notification</h2>
+                                    <p className="font-medium">email is sent to all registered guests to access their photos</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/accuracy.jpeg" alt="accuracy" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Face Recoginition</h2>
+                                    <p className="font-medium">findyou marks the face recoginition accuracy of 99.9%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full max-w-md p-8 mx-auto mb-0 sm:mb-4 lg:mb-0 lg:w-1/3">
+                            <div className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src="/static/images/brand.jpeg" alt="brand" /></figure>
+                                <div className="card-body">
+                                    <h2 className="card-title text-emerald-500">Brand Spotlight</h2>
+                                    <p className="font-medium">increase your brand exposure 10x and get refferals and free marketing</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,22 @@
+import AboutTeam from "@/components/site/aboutTeam";
 import Feature from "@/components/site/feature";
 import Hero from "@/components/site/hero";
+import Link from "next/link";
+
+const PricingPoint = ({ point }: any) => {
+    return (<>
+        <li className="flex items-center">
+            <div className="p-2 text-green-500 rounded-full fill-current ">
+                <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <span className="ml-3 text-lg text-gray-700">{point}</span>
+        </li></>);
+};
 
 const Site = () => {
     return (
@@ -23,7 +40,10 @@ const Site = () => {
                             <path d="M16.5541 20.9138C15.7324 21.1798 15.0158 21.6987 14.5065 22.3963C13.9973 23.0939 13.7216 23.9346 13.7186 24.7983V25.6178C13.7186 25.6178 15.3576 27.2568 20.2746 27.2568C25.1916 27.2568 26.8306 25.6178 26.8306 25.6178V24.7983C26.8267 23.9281 26.5457 23.0817 26.0286 22.3819C25.5114 21.682 24.7849 21.165 23.9542 20.9056" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
 
-                        <span className="ml-3 text-xl text-gray-800">Find You <span className="text-emerald-500">.</span></span>
+                        <span className="ml-3 text-xl text-gray-800">
+                            FindYou <br />
+                            <span className="text-xs">AI face finder</span>
+                        </span>
                     </a>
                     <div
                         className="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
@@ -88,80 +108,16 @@ const Site = () => {
 
             <Feature />
 
-
+            {/* pricing starts here */}
             <div className="relative px-8 py-10 bg-white border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
                 <div className="container flex flex-col items-center h-full max-w-6xl mx-auto">
                     <h2 className="my-5 text-2xl font-semibold tracking-tight text-indigo-500 uppercase">
                         Our Pricing
                     </h2>
-                    <h3 className="max-w-3xl px-5 mt-2 text-3xl font-black leading-tight text-center text-emerald-500 sm:mt-0 sm:px-0 sm:text-6xl">
+                    <h3 className="max-w-3xl px-5 mt-2 mb-10 text-3xl font-black leading-tight text-center text-emerald-500 sm:mt-0 sm:px-0 sm:text-6xl">
                         Transparent Pricing for Everyone
                     </h3>
-                    <div className="flex flex-col gap-8 sm:px-8 sm:flex-row">
-                        <div className="relative flex flex-col items-center block sm:flex-row">
-                            <div className="relative max-w-full my-4 border border-gray-200 rounded-lg sm:my-5 md:-mr-4">
-                                <div className="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
-                                    <div
-                                        className="block max-w-full px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                                        <h3 className="p-3 text-lg font-bold tracking-wide text-center uppercase">Premium<span
-                                            className="ml-2 font-light">Plan</span></h3>
-                                        <h4
-                                            className="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
-                                            <span className="mr-1 -ml-2 text-lg text-gray-700">₹</span>2100</h4>
-                                        <p className="text-sm text-gray-600">In our basic plan you can take advantage of all these
-                                            features below.
-                                        </p>
-                                    </div>
-
-                                    <div className="flex flex-wrap px-6 mt-8">
-                                        <ul>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">Awesome Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">And Another Cool Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">1000 image process</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="flex items-center block p-8 uppercase">
-                                        <button
-                                            type="button"
-                                            className="mt-4 btn rounded-lg text-white bg-emerald-400 w-full"
-                                        >
-                                            Contact Us
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div className="flex items-start flex-col gap-8 sm:px-8 sm:flex-row">
                         <div className="relative flex flex-col items-center block sm:flex-row">
                             <div className="relative max-w-full my-4 border border-gray-200 rounded-lg sm:my-5 md:-mr-4">
                                 <div className="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
@@ -171,244 +127,76 @@ const Site = () => {
                                             className="ml-2 font-light">Plan</span></h3>
                                         <h4
                                             className="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
-                                            <span className="mr-1 -ml-2 text-lg text-gray-700">₹</span>3000</h4>
-                                        <p className="text-sm text-gray-600">In our basic plan you can take advantage of all these
+                                            <span className="mr-1 -ml-2 text-lg text-gray-700">₹</span>2100</h4>
+                                        <p className="text-sm text-gray-600">In our elite plan you can take advantage of all these
                                             features below.
                                         </p>
                                     </div>
 
                                     <div className="flex flex-wrap px-6 mt-8">
                                         <ul>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">Awesome Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">And Another Cool Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">One More Feature</span>
-                                            </li>
+                                            <PricingPoint point="Store upto 1200 image" />
+                                            <PricingPoint point="Instant processing" />
+                                            <PricingPoint point="Bulk download" />
+                                            <PricingPoint point="Mail subscription" />
                                         </ul>
                                     </div>
                                     <div className="flex items-center block p-8 uppercase">
-                                        <button
-                                            type="button"
+                                        <Link
+                                            href="https://wa.me/919443376775?text=Hello, I would like to try your Premium Plan"
                                             className="mt-4 btn rounded-lg text-white bg-emerald-400 w-full"
+                                            target="_blank"
                                         >
                                             Contact Us
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* <div className="relative flex flex-col items-center block sm:flex-row">
-                            <div
-                                className="relative w-11/12 max-w-sm my-8 border border-gray-200 rounded-lg sm:w-3/5 lg:w-1/3 sm:my-5 md:-mr-4">
+                        <div className="relative flex flex-col items-center block sm:flex-row">
+                            <div className="relative max-w-full my-4 border border-gray-200 rounded-lg sm:my-5 md:-mr-4">
                                 <div className="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
                                     <div
                                         className="block max-w-full px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                                        <h3 className="p-3 text-lg font-bold tracking-wide text-center uppercase">Basic<span
+                                        <h3 className="p-3 text-lg font-bold tracking-wide text-center uppercase">Premium<span
                                             className="ml-2 font-light">Plan</span></h3>
                                         <h4
                                             className="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
-                                            <span className="mr-1 -ml-2 text-lg text-gray-700">$</span>48</h4>
-                                        <p className="text-sm text-gray-600">In our basic plan you can take advantage of all these
+                                            <span className="mr-1 -ml-2 text-lg text-gray-700">₹</span>3000</h4>
+                                        <p className="text-sm text-gray-600">In our premium plan you can take advantage of all these
                                             features below.
                                         </p>
                                     </div>
 
                                     <div className="flex flex-wrap px-6 mt-8">
                                         <ul>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">Awesome Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">And Another Cool Feature</span>
-                                            </li>
-                                            <li className="flex items-center">
-                                                <div className="p-2 text-green-500 rounded-full fill-current ">
-                                                    <svg className="w-6 h-6 align-middle" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                                    </svg>
-                                                </div>
-                                                <span className="ml-3 text-lg text-gray-700">One More Feature</span>
-                                            </li>
+                                            <PricingPoint point="Store upto 2400 image" />
+                                            <PricingPoint point="Instant processing" />
+                                            <PricingPoint point="Bulk download" />
+                                            <PricingPoint point="Mail subscription" />
+                                            <PricingPoint point="Brand promotion" />
                                         </ul>
                                     </div>
                                     <div className="flex items-center block p-8 uppercase">
-                                        <a href="#_"
-                                            className="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900 rounded shadow-sm hover:bg-green-600">Select
-                                            This Plan</a>
+                                        <Link
+                                            href="https://wa.me/919443376775?text=Hello, I would like to try your Elite Plan"
+                                            className="mt-4 btn rounded-lg text-white bg-emerald-400 w-full"
+                                            target="_blank"
+                                        >
+                                            Contact Us
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* about us begins */}
-            <div id="testimonials"
-                className="flex items-center justify-center w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex-col items-center ">
-                        <div className="flex flex-col items-center justify-center w-full h-full max-w-2xl pr-8 mx-auto text-center">
-                            {/*<h2 className="my-5 text-2xl font-semibold tracking-tight text-indigo-500 uppercase">
-                        Our Features
-                    </h2> */}
-                            <h3 className="max-w-3xl px-5 mt-2 text-3xl font-black leading-tight text-center text-emerald-500 sm:mt-0 sm:px-0 sm:text-6xl">
-                                Meet the team
-                            </h3>
-                            <p className="my-6 text-xl font-medium text-gray-500">
-                                To build an ecosystem that brings out the photographer and socialite inside every human
-                            </p>
+            <AboutTeam />
 
-                        </div>
-                        <div className="flex flex-col items-center justify-center max-w-2xl py-8 mx-auto xl:flex-row xl:max-w-full">
-                            <div className="w-full xl:w-1/2 xl:pr-8">
-                                <blockquote
-                                    className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
-                                    <div className="flex flex-col pr-8">
-                                        <div className="relative pl-12">
-                                            <svg className="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                                <path
-                                                    d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                            </svg>
-                                            <p className="mt-2 text-base text-gray-600">Software Engineer
-                                            </p>
-                                        </div>
-
-                                        <h3 className="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">
-                                            Prince Sanjivy
-                                            <span className="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
-                                                SomeCompany</span></h3>
-                                        <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                                    </div>
-                                    <img className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                                        src="https://raw.githubusercontent.com/princesanjivy/msf/master/images/vijay.jpg"
-                                        alt="" />
-                                </blockquote>
-                                <blockquote
-                                    className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 mb-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease xl:mb-0">
-                                    <div className="flex flex-col pr-10">
-                                        <div className="relative pl-12">
-                                            <svg className="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                                <path
-                                                    d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                            </svg>
-                                            <p className="mt-2 text-base text-gray-600">Really digging this service. Now I can
-                                                quickly bootstrap any
-                                                project.</p>
-                                        </div>
-                                        <h3 className="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Yadava Prashanna <span className="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
-                                                SomeCompany</span></h3>
-                                        <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                                    </div>
-                                    <img className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                                        src="https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80"
-                                        alt="" />
-                                </blockquote>
-                            </div>
-                            <div className="w-full xl:w-1/2 xl:pl-8">
-                                <blockquote
-                                    className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
-                                    <div className="flex flex-col pr-10">
-                                        <div className="relative pl-12">
-                                            <svg className="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                                <path
-                                                    d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                            </svg>
-                                            <p className="mt-2 text-base text-gray-600">Extremely helpful in every single project we
-                                                have released.
-                                            </p>
-                                        </div>
-
-                                        <h3 className="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">YuvaChn
-                                            <span className="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO SomeCompany</span>
-                                        </h3>
-                                        <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                                    </div>
-                                    <img className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1700&q=80"
-                                        alt="" />
-                                </blockquote>
-                                <blockquote
-                                    className="flex flex-col-reverse items-center justify-between w-full col-span-1 p-6 mt-16 text-center transition-all duration-200 bg-gray-100 rounded-lg md:flex-row md:text-left hover:bg-white hover:shadow ease">
-                                    <div className="flex flex-col pr-10">
-                                        <div className="relative pl-12">
-                                            <svg className="absolute left-0 w-10 h-10 text-indigo-500 fill-current"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
-                                                <path
-                                                    d="M30.7 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2C12.7 83.1 5 72.6 5 61.5c0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S30.7 31.6 30.7 42zM82.4 42c0 6.1 12.6 7 12.6 22 0 11-7.9 19.2-18.9 19.2-11.8 0-19.5-10.5-19.5-21.6 0-19.2 18-44.6 29.2-44.6 2.8 0 7.9 2 7.9 5.4S82.4 31.6 82.4 42z" />
-                                            </svg>
-                                            <p className="mt-2 text-base text-gray-600">Finally a quick and easy system I can use
-                                                for any type of
-                                                project.</p>
-                                        </div>
-
-                                        <h3 className="pl-12 mt-3 text-base font-medium leading-5 text-gray-800 truncate">Thamizh
-                                            Sanchez <span className="mt-1 text-sm leading-5 text-gray-500 truncate">- CEO
-                                                SomeCompany</span></h3>
-                                        <p className="mt-1 text-sm leading-5 text-gray-500 truncate"></p>
-                                    </div>
-                                    <img className="flex-shrink-0 object-cover w-24 h-24 mb-5 bg-gray-300 rounded-full md:mb-0"
-                                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80"
-                                        alt="" />
-                                </blockquote>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
         </>
     );
 }

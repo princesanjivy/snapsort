@@ -1,4 +1,4 @@
-import { LoginDetail, UserDetail } from "./interface";
+import { LoginDetail, RetrieveDetail, UserDetail } from "./interface";
 
 export const defaultFormValues: UserDetail = {
     event: "",
@@ -10,4 +10,9 @@ export const defaultFormValues: UserDetail = {
 export const defaultLoginFormValues: LoginDetail = {
     phone: "",
     password: "",
+};
+
+export const defaultRetrieveFormValues: RetrieveDetail = {
+    phone: "",
+    event: "",
 };
