@@ -16,7 +16,7 @@ const Upload = () => {
   const [userData, setUserData] = useState<string | null>(null);
 
   const [selectedZip, setSelectedZip] = useState<File | null>(null);
-  
+
   const [canUpload, setCanUpload] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -70,7 +70,48 @@ const Upload = () => {
     setCanUpload(true);
   };
 
-  const handleUpload = async () => {};
+  const handleUpload = async () => {
+    setIsLoading(true);
+
+    const url =
+      "https://rvgh8m72t1.execute-api.ap-south-1.amazonaws.com/v1/bulk_upload";
+
+    const payload = JSON.stringify({
+      zip_name: `${eventName}.zip`,
+    });
+
+    console.log(payload);
+
+    const headersList = {
+      Accept: "*/*",
+      "Content-Type": "image/jpg",
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: headersList,
+      body: payload,
+    });
+
+    if (response.ok && response.status === 200) {
+      const data = await response.json();
+      console.log(data.body);
+
+      const preSignedUrl = data.body;
+      const response1 = await fetch(preSignedUrl, {
+        method: "PUT",
+        body: selectedZip,
+      });
+      if (response1.ok && response1.status === 200) {
+        console.log(response1);
+        // const uploadedData = await response1.json();
+        // console.log(uploadedData);
+        router.replace("/admin/success")
+      }
+
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -116,19 +157,18 @@ const Upload = () => {
               </div>
             </div>
 
-            {/* {isLoading ? (
-                <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
-              ) : ( */}
-
-            <button
-              type="button"
-              className="mt-4 btn rounded-lg text-white bg-emerald-400"
-              disabled={!canUpload}
-              onClick={handleUpload}
-            >
-              Save
-            </button>
-            {/* // )} */}
+            {isLoading ? (
+              <span className="mt-4 loading loading-dots loading-lg bg-emerald-400"></span>
+            ) : (
+              <button
+                type="button"
+                className="mt-4 btn rounded-lg text-white bg-emerald-400"
+                disabled={!canUpload}
+                onClick={handleUpload}
+              >
+                Save
+              </button>
+            )}
           </div>
         )}
       </div>
